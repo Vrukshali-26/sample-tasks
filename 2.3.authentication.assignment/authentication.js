@@ -8,7 +8,7 @@ const port = 3000;
 app.use(bodyParser.json());
 
 
-allUsers = []
+allUsers = [];
 
 
 app.post('/signup', (req, res) => {
