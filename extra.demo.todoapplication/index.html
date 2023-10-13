@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>
+            TODO application
+        </title>
+    </head>
+    <script>
+        function logResponseBody(jsonBody) {
+            console.log(jsonBody);
+        }
+
+        function callbackFn(result) {
+            result.json().then(logResponseBody);
+        }
+
+        function onPress() {
+            fetch('http://localhost:3000/todos', {
+                method: "GET"
+            }).then(callbackFn);
+        }
+
+        // Promises
+        let todo = {
+                title: "Do something",
+                description: "Todo sent from fetch"
+            }
+
+        function sendTodo() {
+            fetch('http://localhost:3000/todos', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(todo)
+            })
+            .then((res) => res.json())
+            .then((logresponseBody) => {
+                console.log(logResponseBody)
+            })
+        }
+
+
+    </script>
+    <body>
+        <h1>My TODO application</h1>
+        Enter the task: <input type="text"> <br> <br>
+        Enter the description for the task: <input type="text"> <br> <br>
+        <button onclick="onPress()">Get todos</button> 
+        <button onclick="sendTodo()">Send todo</button>
+    </body>
+</html>
